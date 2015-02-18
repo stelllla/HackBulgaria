@@ -59,8 +59,6 @@ public class RGBToGrayScale {
 		{
 			System.out.println("Failed to write gray image!");
 		}
- 
- 
 	}
  
  
