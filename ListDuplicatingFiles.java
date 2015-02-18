@@ -82,7 +82,6 @@ public class ListDuplicatingFiles
 
 	public static void main (String args[]) throws IOException 
 	{
-	
 		System.out.println("Select a directory or file :");
 	
 		Scanner sc = new Scanner(System.in);
