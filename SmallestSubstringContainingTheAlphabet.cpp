@@ -21,7 +21,7 @@ string toLower(string str)
 
 bool member (string str,char elem)
 {
-    for(int i=0; i<str.length(); i++)
+    for(int i=0; i < str.length(); i++)
     {
         if(str[i] == elem)
         return true;
