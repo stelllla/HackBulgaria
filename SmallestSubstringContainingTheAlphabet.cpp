@@ -84,7 +84,7 @@ string smallestSubstringContainAlphabet(string str)
     str = toLower(str);
     int index = 0;
     string minString = substringContainAlphabet(index, str);
-    while (index != str.length())
+    while (str.length() - index > 27 )
      {
         index += 1;
         string newString = substringContainAlphabet(index, str);
