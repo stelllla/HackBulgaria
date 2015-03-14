@@ -1,1 +1,0 @@
-Hello my name is Stella. First steps in Git.
