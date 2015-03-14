@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 import javax.imageio.ImageIO;
  
-// Class 
+ 
 public class RGBToGrayScale {
  
  
