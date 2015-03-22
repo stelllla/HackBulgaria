@@ -98,17 +98,17 @@ public class UPJavaTests {
         }
     }
     
-    @Test
+   @Test
     public void testDoubleFac() {
         assertEquals(720, problems2.DoubleFac(3));
-        assertEquals(2, problems2.DoubleFac(2));
+        assertEquals(4, problems2.DoubleFac(2));
     }
 
     @Test
     public void testKthFac() {
         assertEquals(3628800, problems2.kthFac(1, 10));
         assertEquals(3628800 / 10, problems2.kthFac(1, 9));
-        testDoubleFac();
+       testDoubleFac();
     }
     
     @Test
