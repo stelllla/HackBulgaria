@@ -34,7 +34,6 @@ public class FileUtils {
         while ((line = br.readLine()) != null) {
              String bytes = new String (line.getBytes("UTF-8"));
              str.append(bytes);
-//            str.append(line + "/n");
         }
 
         br.close();
