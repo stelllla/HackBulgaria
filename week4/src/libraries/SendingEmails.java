@@ -21,14 +21,14 @@ public class SendingEmails {
       MultiPartEmail email = new MultiPartEmail();
       
       email.setHostName("smtp.gmail.com");
-      email.addTo("stella_gavrailova@abv.bg", "Blq blq");
+      email.addTo("email@example.bg", "some stuff");
       
-      email.setAuthenticator(new DefaultAuthenticator("stella.gavrailova@gmail.com", "tinkarbel"));
+      email.setAuthenticator(new DefaultAuthenticator("your_email@example.com", "password"));
       email.setSSLOnConnect(true);
       
-      email.setFrom("stella.gavrailova@gmail.com", "Me");
+      email.setFrom("your_email@example.com", "Me");
       email.setSubject("The logo");
-      email.setMsg("Here is something");
+      email.setMsg("Here is something i wanted to send you.");
       
       email.attach(attachment);
 
