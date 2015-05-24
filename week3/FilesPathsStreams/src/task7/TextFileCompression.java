@@ -114,7 +114,5 @@ public class TextFileCompression {
         bw.close();
 
         System.out.println("The file is decompressed!");
-
     }
-
 }
