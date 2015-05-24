@@ -143,14 +143,12 @@ public class FileCompression {
         if (!original.exists()) {
             original.createNewFile();
         }
-
         File mapFile = new File(original + "mapFile");
         Map<String, String> map = new HashMap<>();
 
         getMapFromFile(map, mapFile);
 
         BufferedReader br = new BufferedReader(new FileReader(compressedFile));
-
         String contest = getContest(map, br);
 
         br.close();
@@ -162,6 +160,5 @@ public class FileCompression {
         bw.close();
 
         System.out.println("The file is decompressed!");
-
     }
 }
