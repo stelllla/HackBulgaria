@@ -1,6 +1,9 @@
 package task7;
 
-// FileCompression with a mapFile for every compressed file.
+/*
+ * FileCompression with a mapFile for every compressed file.
+ */
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -24,7 +27,7 @@ public class FileCompression {
         Iterator<Entry<String, String>> iter = map.entrySet().iterator();
         while (iter.hasNext()) {
             Entry<String, String> curr = iter.next();
-            str.append(curr.getKey() +" " + curr.getValue() + "\n");
+            str.append(curr.getKey() + " " + curr.getValue() + "\n");
         }
         bw.write(str.toString());
         bw.close();
@@ -55,21 +58,51 @@ public class FileCompression {
         File original = filePath.toFile();
         BufferedReader br = new BufferedReader(new FileReader(original));
 
+        File compressedFile = createCompressFile(original);
+
+        File mapFile = createMapFile(original);
+
+        Map<String, String> map = new HashMap<String, String>();
+
+        String compressed = fillMap(map, br);
+
+        br.close();
+        original.delete();
+
+        FileWriter fWriter = new FileWriter(compressedFile.getAbsoluteFile());
+        BufferedWriter bw = new BufferedWriter(fWriter);
+
+        bw.write(compressed);
+        bw.close();
+
+        writeMapInFile(map, mapFile);
+
+        System.out.println("The file is compressed!");
+
+    }
+
+    private static File createMapFile(File original) throws IOException {
+        File mapFile = new File(original + "mapFile");
+        
+        if (!mapFile.exists()) {
+            mapFile.createNewFile();
+        }
+        return mapFile;
+    }
+
+    private static File createCompressFile(File original) throws IOException {
         File compressedFile = new File(original + "compr");
         if (!compressedFile.exists()) {
             compressedFile.createNewFile();
         }
+        return compressedFile;
+    }
 
-        File mapFile = new File(original + "mapFile");
-        if (!mapFile.exists()) {
-            mapFile.createNewFile();
-        }
-
-        Map<String, String> map = new HashMap<String, String>();
-
+    private static String fillMap(Map<String, String> map, BufferedReader br) throws IOException {
         StringBuilder compressed = new StringBuilder();
 
         String line = new String();
+
         while ((line = br.readLine()) != null) {
             String[] splitedText = line.split(" ");
             int index = 0;
@@ -84,19 +117,21 @@ public class FileCompression {
                 }
             }
         }
-        br.close();
-        original.delete();
+        return compressed.toString();
+    }
 
-        FileWriter fWriter = new FileWriter(compressedFile.getAbsoluteFile());
-        BufferedWriter bw = new BufferedWriter(fWriter);
+    private static String getContest(Map<String, String> map, BufferedReader br) throws IOException {
+        StringBuilder contest = new StringBuilder();
 
-        bw.write(compressed.toString());
-        bw.close();
+        String line = new String();
+        while ((line = br.readLine()) != null) {
 
-        writeMapInFile(map, mapFile);
-
-        System.out.println("The file is compressed!");
-
+            String[] keys = line.split(" ");
+            for (String key : keys) {
+                contest.append(map.get(key) + " ");
+            }
+        }
+        return contest.toString();
     }
 
     public static void decompress(Path filePath) throws IOException {
@@ -116,23 +151,14 @@ public class FileCompression {
 
         BufferedReader br = new BufferedReader(new FileReader(compressedFile));
 
-        StringBuilder contest = new StringBuilder();
-
-        String line = new String();
-        while ((line = br.readLine()) != null) {
-
-            String[] keys = line.split(" ");
-            for (String key : keys) {
-                contest.append(map.get(key) + " ");
-            }
-        }
+        String contest = getContest(map, br);
 
         br.close();
         compressedFile.delete();
 
         FileWriter fWriter = new FileWriter(original.getAbsoluteFile());
         BufferedWriter bw = new BufferedWriter(fWriter);
-        bw.write(contest.toString());
+        bw.write(contest);
         bw.close();
 
         System.out.println("The file is decompressed!");
