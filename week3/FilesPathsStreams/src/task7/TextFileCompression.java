@@ -1,5 +1,9 @@
 package task7;
 
+/*
+ * FileCompression with general map for all files.You can compress many files at the same time.
+ */
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
